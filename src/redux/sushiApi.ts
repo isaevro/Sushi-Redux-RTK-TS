@@ -1,4 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { ISushiApi } from '../types/ISushi'
+interface ILink {
+  category: number
+  sort: {
+    type: string
+    order: string
+  }
+}
 
 export const sushiApi = createApi({
   reducerPath: 'sushiApi',
@@ -6,7 +14,7 @@ export const sushiApi = createApi({
     baseUrl: 'http://localhost:3001/',
   }),
   endpoints: (builder) => ({
-    getSushi: builder.query({
+    getSushi: builder.query<ISushiApi, ILink>({
       query: (link) =>
         `sushi?${
           link.category !== null ? `category=${link.category}` : ''

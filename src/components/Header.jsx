@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-import logoSvg from '../assets/img/sushi-roll.png'
 import Button from './Button'
 
 function Header() {
@@ -13,7 +12,7 @@ function Header() {
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img width="48" height="48" src={logoSvg} alt="Sushi logo" />
+            <img width="48" height="48" src='img/logo.png' alt="Sushi logo" />
             <div>
               <h1>Sushi Shop</h1>
               <p>самые вкусные суши во вселенной</p>

@@ -2,7 +2,6 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import cartEmptyImage from '../assets/img/empty-cart.png'
 import { CartItem, Button } from '../components'
 import {
   minusFour,
@@ -176,7 +175,7 @@ function Cart() {
             <br />
             Для того, чтобы заказать суши, перейди на главную страницу.
           </p>
-          <img src={cartEmptyImage} alt="Empty cart" />
+          <img src="img/empty-cart.png" alt="Empty cart" />
           <Link to="/" className="button button--black">
             <span>Вернуться назад</span>
           </Link>

@@ -1,9 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { ISushiCart } from '../types/ISushi'
 
-const initialState = {
+interface ICartState {
+  cart: ISushiCart[]
+  totalPrice: number
+  totalCount: number
+  piecePrice: number
+}
+
+const initialState: ICartState = {
   cart: [],
   totalPrice: 0,
   totalCount: 0,
+  piecePrice: 0,
 }
 
 export const cartSlice = createSlice({
@@ -36,9 +45,13 @@ export const cartSlice = createSlice({
     },
     removeItem: (state, action) => {
       state.cart = state.cart.filter((e) => e.id !== action.payload)
+      state.totalPrice = state.cart.reduce((sum, cur) => sum + cur.price, 0)
+      state.totalCount = state.cart.reduce((sum, cur) => sum + cur.size, 0)
     },
     removeAllItems: (state) => {
       state.cart = []
+      state.totalPrice = state.cart.reduce((sum, cur) => sum + cur.price, 0)
+      state.totalCount = state.cart.reduce((sum, cur) => sum + cur.size, 0)
     },
     plusFour: (state, action) => {
       state.cart = state.cart.map((e) =>

@@ -25,7 +25,7 @@ function Home() {
 
   const cartItems = useSelector((state) => state.cart.cart)
   const dispatch = useDispatch()
-  console.log('render')
+  console.log(cartItems)
   const onSelectCategory = (index) => {
     setCategory(index)
   }
