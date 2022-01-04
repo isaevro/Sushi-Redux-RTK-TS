@@ -14,7 +14,7 @@ export const sushiApi = createApi({
     baseUrl: 'http://localhost:3001/',
   }),
   endpoints: (builder) => ({
-    getSushi: builder.query<ISushiApi, ILink>({
+    getSushi: builder.query<ISushiApi[], ILink>({
       query: (link) =>
         `sushi?${
           link.category !== null ? `category=${link.category}` : ''

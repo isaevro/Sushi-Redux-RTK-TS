@@ -1,7 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { ISortItems } from '../types/ISushi'
 
-const SortPopup = React.memo(function SortPopup({
+interface Props {
+  items: ISortItems[]
+  activeSortType: string
+  onClickSortType: (item: ISortItems) => void
+}
+
+const SortPopup: React.FC<Props> = React.memo(function SortPopup({
   items,
   activeSortType,
   onClickSortType,
@@ -13,26 +19,24 @@ const SortPopup = React.memo(function SortPopup({
   const toggleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup)
   }
-
-  const handleOutsideClick = (event) => {
-    const path = event.path || (event.composedPath && event.composedPath())
+  // any т.к. не находит path, хотя на caniuse имеет поддержку 93%+
+  const handleOutsideClick = (event: any): void => {
+    const path = event.path
     if (!path.includes(sortRef.current)) {
       setVisiblePopup(false)
     }
   }
 
-  const onSelectItem = (index) => {
+  const onSelectItem = (item: ISortItems) => {
     if (onClickSortType) {
-      onClickSortType(index)
+      onClickSortType(item)
     }
     setVisiblePopup(false)
   }
 
   React.useEffect(() => {
     document.body.addEventListener('click', handleOutsideClick)
-    return function () {
-      document.body.removeEventListener('click', handleOutsideClick)
-    }
+    return () => document.body.removeEventListener('click', handleOutsideClick)
   }, [])
 
   return (
@@ -57,12 +61,12 @@ const SortPopup = React.memo(function SortPopup({
         <div className="sort__popup">
           <ul>
             {items &&
-              items.map((obj, index) => (
+              items.map((item, index) => (
                 <li
-                  onClick={() => onSelectItem(obj)}
-                  className={activeSortType === obj.type ? 'active' : ''}
-                  key={`${obj.type}_${index}`}>
-                  {obj.name}
+                  onClick={() => onSelectItem(item)}
+                  className={activeSortType === item.type ? 'active' : ''}
+                  key={`${item.type}_${index}`}>
+                  {item.name}
                 </li>
               ))}
           </ul>
@@ -71,15 +75,5 @@ const SortPopup = React.memo(function SortPopup({
     </div>
   )
 })
-
-SortPopup.propTypes = {
-  activeSortType: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onClickSortType: PropTypes.func.isRequired,
-}
-
-SortPopup.defaultProps = {
-  items: [],
-}
 
 export default SortPopup

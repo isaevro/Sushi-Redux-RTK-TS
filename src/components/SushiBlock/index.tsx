@@ -1,9 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import Button from '../Button'
+import { ISushiCart } from '../../types/ISushi'
+interface Props {
+  id: number
+  name: string
+  imageUrl: string
+  price: number
+  types: number[]
+  sizes: number[]
+  onClickAddSushi: (obj: ISushiCart) => void
+  addedCount: ISushiCart | undefined
+}
 
-function SushiBlock({
+const SushiBlock: React.FC<Props> = ({
   id,
   name,
   imageUrl,
@@ -12,17 +22,17 @@ function SushiBlock({
   sizes,
   onClickAddSushi,
   addedCount,
-}) {
+}) => {
   const availableTypes = ['с васаби', 'без васаби']
   const availableSizes = [4, 8, 16]
 
   const [activeType, setActiveType] = React.useState(types[0])
   const [activeSize, setActiveSize] = React.useState(0)
-  const onSelectType = (index) => {
+  const onSelectType = (index: number) => {
     setActiveType(index)
   }
 
-  const onSelectSize = (index) => {
+  const onSelectSize = (index: number) => {
     setActiveSize(index)
   }
 
@@ -76,7 +86,7 @@ function SushiBlock({
         <div className="sushi-block__price">
           {(price / 4) * availableSizes[activeSize]} ₽
         </div>
-        <Button onClick={onAddSushi} className="button--add" outline>
+        <Button onClick={onAddSushi} className="button--add" outline={true}>
           <svg
             width="12"
             height="12"
@@ -94,23 +104,6 @@ function SushiBlock({
       </div>
     </div>
   )
-}
-
-SushiBlock.propTypes = {
-  name: PropTypes.string,
-  imageUrl: PropTypes.string,
-  price: PropTypes.number,
-  types: PropTypes.arrayOf(PropTypes.number),
-  sizes: PropTypes.arrayOf(PropTypes.number),
-  onClickAddSushi: PropTypes.func,
-  addedCount: PropTypes.object,
-}
-
-SushiBlock.defaultProps = {
-  name: '---',
-  price: 0,
-  types: [],
-  sizes: [],
 }
 
 export default SushiBlock

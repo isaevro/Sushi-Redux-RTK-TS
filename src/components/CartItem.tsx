@@ -1,7 +1,19 @@
 import React from 'react'
 import Button from './Button'
 
-const CartItem = ({
+interface Props {
+  id: number
+  name: string
+  type: string
+  price: number
+  size: number
+  onRemove: (num: number) => void
+  onMinus: (num: number) => void
+  onPlus: (num: number) => void
+  imgURL: string
+}
+
+const CartItem: React.FC<Props> = ({
   id,
   name,
   type,

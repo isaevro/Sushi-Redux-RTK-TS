@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { CartItem, Button } from '../components'
+import { RootState } from '../redux'
 import {
   minusFour,
   plusFour,
@@ -10,9 +11,13 @@ import {
   removeItem,
 } from '../redux/cartSlice'
 
-function Cart() {
-  const { cart, totalPrice, totalCount } = useSelector((state) => state.cart)
+const Cart: React.FC = () => {
+  const [isOrder, setIsOrder] = useState<boolean>(false)
+  const { cart, totalPrice, totalCount } = useSelector(
+    (state: RootState) => state.cart,
+  )
   const dispatch = useDispatch()
+  console.log(cart)
 
   const onClearCart = () => {
     if (window.confirm('Вы действительно хотите очистить корзину?')) {
@@ -20,22 +25,23 @@ function Cart() {
     }
   }
 
-  const onRemoveItem = (id) => {
+  const onRemoveItem = (id: number) => {
     dispatch(removeItem(id))
   }
 
-  const onPlusItem = (id) => {
+  const onPlusItem = (id: number) => {
     dispatch(plusFour(id))
   }
 
-  const onMinusItem = (id) => {
+  const onMinusItem = (id: number) => {
     dispatch(minusFour(id))
   }
 
   const onClickOrder = () => {
-    console.log('ВАШ ЗАКАЗ')
+    dispatch(removeAllItems())
+    setIsOrder(true)
   }
-
+  console.log(isOrder)
   return (
     <div className="container container--cart">
       {cart.length !== 0 ? (
@@ -138,8 +144,8 @@ function Cart() {
               </span>
             </div>
             <div className="cart__bottom-buttons">
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="button button--outline button--add go-back-btn">
                 <svg
                   width="8"
@@ -155,11 +161,14 @@ function Cart() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <Link to="/">
+                <div>
                   <span>Вернуться назад</span>
-                </Link>
-              </a>
-              <Button onClick={onClickOrder} className="pay-btn">
+                </div>
+              </Link>
+              <Button
+                onClick={onClickOrder}
+                className="pay-btn"
+                outline={false}>
                 <span>Оплатить сейчас</span>
               </Button>
             </div>
@@ -167,14 +176,21 @@ function Cart() {
         </div>
       ) : (
         <div className="cart cart--empty">
-          <h2>
-            Корзина пустая <i>😕</i>
-          </h2>
-          <p>
-            Вероятней всего, вы не заказывали ещё Суши.
-            <br />
-            Для того, чтобы заказать суши, перейди на главную страницу.
-          </p>
+          {isOrder ? (
+            <h2>Спасибо за покупку!</h2>
+          ) : (
+            <h2>
+              Корзина пустая <i>😕</i>
+            </h2>
+          )}
+
+          {!isOrder && (
+            <p>
+              Вероятней всего, вы не заказывали ещё Суши.
+              <br />
+              Для того, чтобы заказать суши, перейди на главную страницу.
+            </p>
+          )}
           <img src="img/empty-cart.png" alt="Empty cart" />
           <Link to="/" className="button button--black">
             <span>Вернуться назад</span>

@@ -3,16 +3,19 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import Button from './Button'
+import { RootState } from '../redux'
 
-function Header() {
-  const { totalPrice, totalCount } = useSelector((state) => state.cart)
+const Header: React.FC = () => {
+  const { totalPrice, totalCount } = useSelector(
+    (state: RootState) => state.cart,
+  )
 
   return (
     <div className="header">
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img width="48" height="48" src='img/logo.png' alt="Sushi logo" />
+            <img width="48" height="48" src="img/logo.png" alt="Sushi logo" />
             <div>
               <h1>Sushi Shop</h1>
               <p>самые вкусные суши во вселенной</p>
@@ -22,7 +25,7 @@ function Header() {
 
         <div className="header__cart">
           <Link to="/cart">
-            <Button className="button--cart">
+            <Button className="button--cart" outline={false}>
               <span>{totalPrice} ₽</span>
               <div className="button__delimiter"></div>
               <svg
