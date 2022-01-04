@@ -11,14 +11,14 @@ interface ILink {
 export const sushiApi = createApi({
   reducerPath: 'sushiApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3001/',
+    baseUrl: 'https://61bb7bc9e943920017784ee6.mockapi.io/',
   }),
   endpoints: (builder) => ({
     getSushi: builder.query<ISushiApi[], ILink>({
       query: (link) =>
         `sushi?${
           link.category !== null ? `category=${link.category}` : ''
-        }&_sort=${link.sort.type}&_order=${link.sort.order}`,
+        }&sortby=${link.sort.type}&order=${link.sort.order}`,
     }),
   }),
 })
