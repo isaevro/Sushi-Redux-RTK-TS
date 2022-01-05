@@ -17,7 +17,6 @@ const Cart: React.FC = () => {
     (state: RootState) => state.cart,
   )
   const dispatch = useDispatch()
-  console.log(cart)
 
   const onClearCart = () => {
     if (window.confirm('Вы действительно хотите очистить корзину?')) {
@@ -41,7 +40,6 @@ const Cart: React.FC = () => {
     dispatch(removeAllItems())
     setIsOrder(true)
   }
-  console.log(isOrder)
   return (
     <div className="container container--cart">
       {cart.length !== 0 ? (

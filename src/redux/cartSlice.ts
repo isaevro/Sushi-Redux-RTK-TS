@@ -61,7 +61,6 @@ export const cartSlice = createSlice({
       )
       state.totalPrice = state.cart.reduce((sum, cur) => sum + cur.price, 0)
       state.totalCount = state.cart.reduce((sum, cur) => sum + cur.size, 0)
-      console.log(state.cart)
     },
     minusFour: (state, action) => {
       state.cart = state.cart.map((e) =>

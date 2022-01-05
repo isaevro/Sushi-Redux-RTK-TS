@@ -26,7 +26,6 @@ const Home: React.FC = () => {
 
   const cartItems = useSelector((state: RootState) => state.cart.cart)
   const dispatch = useDispatch()
-  console.log(cartItems)
   const onSelectCategory = (index: number) => {
     setCategory(index)
   }
