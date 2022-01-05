@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Sushi-Redux-RTK-TS/static/css/main.3f15fe63.css",
-    "main.js": "/Sushi-Redux-RTK-TS/static/js/main.da731d52.js",
+    "main.js": "/Sushi-Redux-RTK-TS/static/js/main.7a913698.js",
     "static/media/ProximaNova-Regular.eot": "/Sushi-Redux-RTK-TS/static/media/ProximaNova-Regular.d97f8f32c098b28c3ab0.eot",
     "static/media/ProximaNova-Regular.ttf": "/Sushi-Redux-RTK-TS/static/media/ProximaNova-Regular.b078618b41b9b6629ea0.ttf",
     "static/media/ProximaNova-Bold.eot": "/Sushi-Redux-RTK-TS/static/media/ProximaNova-Bold.787088b281e017f8c449.eot",
@@ -16,10 +16,10 @@
     "static/media/ProximaNova-Black.woff": "/Sushi-Redux-RTK-TS/static/media/ProximaNova-Black.131eab64b8a971a4fc73.woff",
     "index.html": "/Sushi-Redux-RTK-TS/index.html",
     "main.3f15fe63.css.map": "/Sushi-Redux-RTK-TS/static/css/main.3f15fe63.css.map",
-    "main.da731d52.js.map": "/Sushi-Redux-RTK-TS/static/js/main.da731d52.js.map"
+    "main.7a913698.js.map": "/Sushi-Redux-RTK-TS/static/js/main.7a913698.js.map"
   },
   "entrypoints": [
     "static/css/main.3f15fe63.css",
-    "static/js/main.da731d52.js"
+    "static/js/main.7a913698.js"
   ]
 }
