@@ -1,4 +1,5 @@
 # Магазин суши
+deploy: https://isaevro.github.io/Sushi-Redux-RTK-TS/#/
 
 ### Изпользованы технологии:
 
